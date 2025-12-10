@@ -16,7 +16,7 @@ import Link from "next/link";
 import { useRouter } from "next/navigation";
 
 /* ------------------------------------------------
-    DESIGN TOKENS - CALM, EARTHY LIGHT THEME
+   DESIGN TOKENS - CALM, EARTHY LIGHT THEME
 ------------------------------------------------ */
 const BG = "#F8FDFE"; // Very Light Background
 const TEXT = "#2C3E50"; // Dark Blue/Gray Text
@@ -28,7 +28,7 @@ const BORDER = "#E0E9F0"; // Subtle Border
 const QUOTE_BG = "#F3FCF6"; // Slightly deeper background for the quote card
 
 /* ------------------------------------------------
-    GLOBAL
+   GLOBAL
 ------------------------------------------------ */
 const Global = createGlobalStyle`
   body {
@@ -46,7 +46,7 @@ const Global = createGlobalStyle`
 `;
 
 /* ------------------------------------------------
-    TYPOGRAPHY COMPONENTS
+   TYPOGRAPHY COMPONENTS
 ------------------------------------------------ */
 const SectionHeading = styled.h3`
   font-size: 18px;
@@ -69,7 +69,7 @@ const CardSubtext = styled.p`
 `;
 
 /* ------------------------------------------------
-    LAYOUT
+   LAYOUT
 ------------------------------------------------ */
 const Wrapper = styled.div`
   width: 100%;
@@ -134,7 +134,7 @@ const NameDropdown = styled.button`
 `;
 
 /* ------------------------------------------------
-    CARDS
+   CARDS
 ------------------------------------------------ */
 const Card = styled(motion.div)`
   background: ${CARD};
@@ -234,13 +234,17 @@ const MoodItem = styled.div`
 `;
 
 /* ------------------------------------------------
-    DUMMY DATA
+   DUMMY DATA
 ------------------------------------------------ */
+
+// 🛑 FIX APPLIED HERE: Define the type for SUMMARY_STATE
+type SummaryStateType = "pending" | "not_enough" | "ready";
+
 const HAS_WRITTEN_TODAY = false;
 const STREAK = 3;
 const JOURNALS_THIS_WEEK = 4;
-const SUMMARY_STATE = "pending";
-// "pending" | "not_enough" | "ready"
+// Assign the type to the constant to ensure type safety across the file
+const SUMMARY_STATE: SummaryStateType = "pending";
 
 const RAGA_DATA = {
   ragaName: "Darbari Kanada",
@@ -390,6 +394,7 @@ export default function Dashboard() {
                 </div>
               )}
 
+              {/* This condition is now error-free due to the type definition */}
               {SUMMARY_STATE === "not_enough" && (
                 <div>
                   <Calendar size={32} color={ACCENT} />
